@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "124839745687",
+    "project_id": "netfilex-app-c5f5c",
+    "storage_bucket": "netfilex-app-c5f5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124839745687:android:009dc9607192da977831d2",
+        "android_client_info": {
+          "package_name": "com.example.netflix_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124839745687-cenqjp34utn4eqd343hdp629rhe4b05j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuMWMaMhTu_BTDH2GFodFd2sBdJLldLaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124839745687-cenqjp34utn4eqd343hdp629rhe4b05j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
