@@ -12,6 +12,7 @@ import 'package:netflix_app/screens/sign_up_screen/sign_up_screen.dart';
 import 'package:netflix_app/screens/splash_screen/splash_screen.dart';
 import 'package:netflix_app/screens/verification_code_screen/verification_code_screen.dart';
 import 'package:netflix_app/screens/welcome_screen/welcome_screen.dart';
+import 'package:netflix_app/services/dio_helper.dart';
 import 'package:netflix_app/services/get_now_playing_service.dart';
 import 'package:netflix_app/simple_bloc_observer.dart';
 
@@ -23,6 +24,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = SimpleBlocObserver();
+  await DioHelper.init();
 
   // NowPlayingService service = NowPlayingService();
   // movie = await service.getNowPlayingMovies() as MovieModel;

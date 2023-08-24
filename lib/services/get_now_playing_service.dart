@@ -1,33 +1,25 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:netflix_app/helper/api.dart';
 import 'package:netflix_app/models/results_model.dart';
+import 'package:netflix_app/services/dio_helper.dart';
 
 abstract class BaseMovieRemoteDataSource {
-  Future<List<MovieModel>> getNowPlayingMovies();
+  Future<MovieModel> getNowPlayingMovies();
 }
 
 class NowPlayingService {
   String baseUrl = 'https://api.themoviedb.org/3/movie';
   String apiKey = 'b18d712e84b672f268f26229271fd13e';
 
-  Future<List<MovieModel>> getNowPlayingMovies() async {
-    Uri url = Uri.parse('$baseUrl/now_playing?api_key=$apiKey');
-
-    http.Response response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      return List<MovieModel>.from((response.body as List).map(
-        (e) => MovieModel.fromJson(e),
-      ));
-    } else {
+  Future<MovieModel> getNowPlayingMovies() async {
+    final response =  await DioHelper.getData('$baseUrl/now_playing?api_key=$apiKey');
+    if(response.statusCode == 200){
+      return MovieModel.formJson(response.data);
+    }
+    else{
       throw Exception('Failed to load now playing movies.');
     }
-    // Map<String, dynamic> data = jsonDecode(response.body);
 
-    // ResultsModel result = ResultsModel.fromJson(data);
-
-    // return result;
   }
 
   // @override
