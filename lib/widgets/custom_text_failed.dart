@@ -10,12 +10,16 @@ class CustomTextFailed extends StatelessWidget {
     this.textInputType = TextInputType.text,
     this.onChanged,
     this.controller,
+    this.suffixIcon,
+    this.color = kSecondColor,
   });
   final String hintText;
   final bool obscureText;
   final TextInputType textInputType;
   final void Function(String)? onChanged;
   final TextEditingController? controller;
+  final Widget? suffixIcon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -37,26 +41,29 @@ class CustomTextFailed extends StatelessWidget {
         fontSize: 20,
       ),
       decoration: InputDecoration(
+        suffixIcon: suffixIcon,
         filled: true,
         fillColor: kSecondColor.withOpacity(20 / 100),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 34, vertical: 17),
         hintText: hintText,
-        hintStyle: const TextStyle(
-          color: kSecondColor,
+        hintStyle: TextStyle(
+          color: color,
           fontSize: 20,
           fontWeight: FontWeight.bold,
           fontFamily: 'Inter',
         ),
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(45),
-            borderSide: BorderSide(color: Colors.grey.shade200)),
+          borderRadius: BorderRadius.circular(45),
+          borderSide: BorderSide.none,
+        ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(45),
-            borderSide: BorderSide(color: Colors.grey.shade200)),
+          borderRadius: BorderRadius.circular(45),
+          borderSide: BorderSide.none,
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(45),
-          borderSide: BorderSide(color: Colors.grey.shade200),
+          borderSide: BorderSide.none,
         ),
       ),
     );

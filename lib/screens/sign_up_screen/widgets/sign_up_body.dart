@@ -35,7 +35,7 @@ class _SignUPBodyState extends State<SignUPBody> {
         if (state is SignUpLoading) {
           isLoading = true;
         } else if (state is SignUpSuccess) {
-          Navigator.pushReplacementNamed(context, HomeScreen.id);
+          Navigator.pushReplacementNamed(context, Home.id);
           isLoading = false;
         } else if (state is SignUpFailure) {
           showSnackBar(context, state.message);
