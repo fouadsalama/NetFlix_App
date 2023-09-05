@@ -88,9 +88,13 @@ class ProfileInfoAndEdit extends StatelessWidget {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onPressed: () {},
-          icon: Image.asset(
-            'assets/images/edit.png',
-            color: kSecondColor,
+          icon: SizedBox(
+            width: 24,
+            height: 24,
+            child: Image.asset(
+              'assets/images/edit.png',
+              color: kSecondColor,
+            ),
           ),
         ),
       ],

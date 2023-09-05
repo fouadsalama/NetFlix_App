@@ -15,6 +15,7 @@ class FavoriteScreen extends StatelessWidget {
           child: Text(
             'WishList',
             style: TextStyle(
+              color: kSecondColor,
               fontSize: 20,
               fontWeight: FontWeight.w500,
             ),

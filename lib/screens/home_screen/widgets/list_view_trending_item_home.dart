@@ -12,32 +12,35 @@ class ListViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 230,
-      child: FutureBuilder<List<MoviePosterModel>>(
-          future: GetHomeDataMovie().getDataMovies(movie: 'popular'),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List<MoviePosterModel> moviePosters = snapshot.data!;
-              return ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: moviePosters.length,
-                itemBuilder: (context, index) {
-                  final posterUrl = listItemBuilder(moviePosters, index);
-                  return DisplayImage(
-                    posterUrl: posterUrl,
-                  );
-                },
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: kMainColor,
-                ),
-              );
-            }
-          }),
+    return GestureDetector(
+      onTap: () {},
+      child: SizedBox(
+        height: 230,
+        child: FutureBuilder<List<MoviePosterModel>>(
+            future: GetHomeDataMovie().getDataMovies(movie: 'popular'),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List<MoviePosterModel> moviePosters = snapshot.data!;
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: moviePosters.length,
+                  itemBuilder: (context, index) {
+                    final posterUrl = listItemBuilder(moviePosters, index);
+                    return DisplayImage(
+                      posterUrl: posterUrl,
+                    );
+                  },
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: kMainColor,
+                  ),
+                );
+              }
+            }),
+      ),
     );
   }
 }

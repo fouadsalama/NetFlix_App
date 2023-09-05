@@ -16,6 +16,7 @@ class PersonScreen extends StatelessWidget {
           child: Text(
             'Profile',
             style: TextStyle(
+              color: kSecondColor,
               fontSize: 20,
               fontWeight: FontWeight.w500,
             ),
