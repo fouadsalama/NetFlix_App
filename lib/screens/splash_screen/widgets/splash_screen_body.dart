@@ -9,13 +9,9 @@ class SplashScreenBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Spacer(flex: 4),
+        const Spacer(flex: 1),
         Center(
           child: Image.asset(kLogo),
-        ),
-        const Spacer(flex: 3),
-        const CircularProgressIndicator(
-          color: kMainColor,
         ),
         const Spacer(flex: 1),
       ],

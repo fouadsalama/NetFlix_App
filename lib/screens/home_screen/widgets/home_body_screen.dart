@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_app/screens/home_screen/widgets/headline_home.dart';
-import 'package:netflix_app/screens/home_screen/widgets/list_view_trending_item_home.dart';
-import 'package:netflix_app/screens/home_screen/widgets/list_view_top_movie.dart';
+import 'package:netflix_app/screens/home_screen/widgets/list_view_Items.dart';
 import '../../../widgets/custom_app_bar.dart';
-import 'list_view_popular_movie.dart';
 
 class HomeBodyScreen extends StatelessWidget {
   const HomeBodyScreen({
@@ -17,15 +15,18 @@ class HomeBodyScreen extends StatelessWidget {
         children: [
           SizedBox(height: 25),
           CustomAppBar(),
-          HeadlinesScreen(text: 'Popular Now'),
-          ListViewItem(),
+          HeadlinesScreen(text: 'Now Playing'),
+          ListViewItems(movie: 'now_playing'),
+          SizedBox(height: 25),
+          HeadlinesScreen(text: 'Popular Movies'),
+          ListViewItems(movie: 'popular'),
           SizedBox(height: 25),
           HeadlinesScreen(text: 'Upcoming Movies'),
-          ListViewPopularMovie(),
+          ListViewItems(movie: 'upcoming'),
           SizedBox(height: 25),
-          HeadlinesScreen(text: 'Top Movies'),
-          ListViewTopMovie(),
-          SizedBox(height: 25),
+          HeadlinesScreen(text: 'Top Movie'),
+          ListViewItems(movie: 'top_rated'),
+          SizedBox(height: 40),
         ],
       ),
     );

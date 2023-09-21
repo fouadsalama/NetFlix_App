@@ -1,40 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:video_player/video_player.dart';
-import 'package:chewie/chewie.dart';
+import 'package:netflix_app/constants/constants.dart';
+import 'package:netflix_app/widgets/custom_button.dart';
 
-class VideoPlayerScreen extends StatefulWidget {
-  final String url;
+import 'package:url_launcher/url_launcher.dart';
 
-  const VideoPlayerScreen({Key? key, required this.url}) : super(key: key);
+class VideoPlayerScreen extends StatelessWidget {
+  final String videoUrl;
 
-  @override
-  // ignore: library_private_types_in_public_api
-  _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
-}
+  const VideoPlayerScreen({
+    Key? key,
+    required this.videoUrl,
+  }) : super(key: key);
 
-class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
-  InAppWebViewController? webViewController;
+  void launchURL() async {
+    final url = videoUrl; // Replace with your desired URL
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: InAppWebView(
-            initialUrlRequest: URLRequest(url: Uri.parse(widget.url)),
-            initialOptions: InAppWebViewGroupOptions(
-              crossPlatform:
-                  InAppWebViewOptions(useShouldOverrideUrlLoading: true),
-              android: AndroidInAppWebViewOptions(),
-              ios: IOSInAppWebViewOptions(
-                allowsInlineMediaPlayback: false,
-              ),
-            ),
-            onWebViewCreated: (controller) {
-              webViewController = controller;
-            },
-          ),
+      body: Center(
+        child: CustomButton(
+          text: 'play',
+          color: kMainColor,
+          onTap: launchURL,
         ),
       ),
     );

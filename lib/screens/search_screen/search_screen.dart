@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_app/constants/constants.dart';
-import 'package:netflix_app/helper/list_home_item_builder.dart';
 import 'package:netflix_app/models/movIe_model.dart';
 import 'package:netflix_app/screens/search_screen/widgets/search_view.dart';
 import 'package:netflix_app/widgets/custom_text_failed.dart';
@@ -54,11 +53,14 @@ class SearchScreen extends StatelessWidget {
                         itemCount: movieList.length,
                         itemBuilder: (context, index) {
                           final MoviePosterModel model = movieList[index];
-                          final posterPath = listItemBuilder(movieList, index);
+
+                          final posterPath = model.posterPath;
+                          final posterUrl =
+                              'https://image.tmdb.org/t/p/w500$posterPath';
 
                           final title = model.title;
                           return SearchView(
-                              posterPath: posterPath, title: title);
+                              posterPath: posterUrl, title: title);
                         });
                   } else {
                     return const Center(

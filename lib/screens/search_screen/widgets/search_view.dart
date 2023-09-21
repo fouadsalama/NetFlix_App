@@ -37,7 +37,7 @@ class SearchView extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  overflow: TextOverflow.visible,
+                  overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: const TextStyle(
                     color: kSecondColor,

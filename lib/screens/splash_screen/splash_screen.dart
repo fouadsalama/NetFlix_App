@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:netflix_app/screens/home_screen/home_screen.dart';
 
-import '../page_view_screen/page_view_screen.dart';
 import 'widgets/splash_screen_body.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,8 +14,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 6), () {
-      Navigator.pushNamed(context, PageViewScreen.id);
+    Timer(const Duration(seconds: 4), () {
+      Navigator.pushReplacementNamed(context, Home.id);
     });
     super.initState();
   }

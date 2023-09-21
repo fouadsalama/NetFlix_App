@@ -3,8 +3,8 @@ import 'package:netflix_app/constants/constants.dart';
 
 import 'widgets/custom_profile_item.dart';
 
-class PersonScreen extends StatelessWidget {
-  const PersonScreen({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

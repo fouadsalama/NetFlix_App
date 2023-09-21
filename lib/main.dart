@@ -16,7 +16,7 @@ import 'package:netflix_app/simple_bloc_observer.dart';
 
 import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -49,7 +49,7 @@ class NetflixApp extends StatelessWidget {
         NewPasswordScreen.id: (context) => const NewPasswordScreen(),
         Home.id: (context) => const Home(),
       },
-      initialRoute: Home.id,
+      initialRoute: SplashScreen.id,
     );
   }
 }
