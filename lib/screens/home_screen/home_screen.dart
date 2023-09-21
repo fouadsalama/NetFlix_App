@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_app/constants/constants.dart';
 import 'package:netflix_app/screens/favorite_screen/favorite_screen.dart';
-import 'package:netflix_app/screens/prpfile_screen/person_screen.dart';
+import 'package:netflix_app/screens/profile_screen/person_screen.dart';
 import 'package:netflix_app/screens/search_screen/search_screen.dart';
 import 'widgets/home_body_screen.dart';
 
