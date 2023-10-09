@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix_app/constants/constants.dart';
+import 'package:netflix_app/cubits/favorite_movie/favorite_movie_cubit.dart';
+import 'package:netflix_app/cubits/selected_screens/selected_bar_screen_cubit.dart';
 import 'package:netflix_app/screens/forget_password_screen/forget_password_screen.dart';
 import 'package:netflix_app/screens/home_screen/home_screen.dart';
 import 'package:netflix_app/screens/new_password_screen/new_password_screen.dart';
@@ -32,24 +34,36 @@ class NetflixApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: kBackgroundColor,
-        fontFamily: 'Poppins',
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => SelectedBarScreenCubit()),
+        BlocProvider(create: (context) => FavoriteMovieCubit()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          brightness: Brightness.dark,
+          scaffoldBackgroundColor: kBackgroundColor,
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedItemColor: kMainColor,
+            unselectedItemColor: kSecondColor,
+          ),
+          fontFamily: 'Poppins',
+        ),
+        darkTheme: ThemeData.dark(),
+        routes: {
+          SplashScreen.id: (context) => const SplashScreen(),
+          PageViewScreen.id: (context) => const PageViewScreen(),
+          WelcomeScreen.id: (context) => const WelcomeScreen(),
+          SignInScreen.id: (context) => const SignInScreen(),
+          SignUpScreen.id: (context) => const SignUpScreen(),
+          ForgetPasswordScreen.id: (context) => const ForgetPasswordScreen(),
+          VerificationCode.id: (context) => const VerificationCode(),
+          NewPasswordScreen.id: (context) => const NewPasswordScreen(),
+          HomeScreen.id: (context) => const HomeScreen(),
+        },
+        initialRoute: SplashScreen.id,
       ),
-      routes: {
-        SplashScreen.id: (context) => const SplashScreen(),
-        PageViewScreen.id: (context) => const PageViewScreen(),
-        WelcomeScreen.id: (context) => const WelcomeScreen(),
-        SignInScreen.id: (context) => const SignInScreen(),
-        SignUpScreen.id: (context) => const SignUpScreen(),
-        ForgetPasswordScreen.id: (context) => const ForgetPasswordScreen(),
-        VerificationCode.id: (context) => const VerificationCode(),
-        NewPasswordScreen.id: (context) => const NewPasswordScreen(),
-        Home.id: (context) => const Home(),
-      },
-      initialRoute: SplashScreen.id,
     );
   }
 }

@@ -11,7 +11,14 @@ class SplashScreenBody extends StatelessWidget {
       children: [
         const Spacer(flex: 1),
         Center(
-          child: Image.asset(kLogo),
+          child: Image.asset(
+            kLogo,
+            height: MediaQuery.of(context).size.height * .45,
+            width: double.infinity,
+          ),
+        ),
+        const CircularProgressIndicator(
+          color: kMainColor,
         ),
         const Spacer(flex: 1),
       ],

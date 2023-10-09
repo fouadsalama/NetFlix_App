@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_app/constants/constants.dart';
-
 import 'widgets/custom_profile_item.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -10,13 +8,13 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kBackgroundColor,
         elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         title: const Center(
           child: Text(
             'Profile',
             style: TextStyle(
-              color: kSecondColor,
+              color: Colors.grey,
               fontSize: 20,
               fontWeight: FontWeight.w500,
             ),

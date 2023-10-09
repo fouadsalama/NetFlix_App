@@ -16,40 +16,34 @@ class CustomProfileItem extends StatelessWidget {
         ProfileInfoAndEdit(),
         SizedBox(height: 30),
         Divider(
-          color: kSecondColor,
-        ),
+            // color: Colors.grey,
+            ),
         SizedBox(
           height: 25,
         ),
         CustomProfileElements(
           image: 'assets/images/folder.png',
           text: 'Downloads',
-          color: kSecondColor,
         ),
         CustomProfileElements(
           image: 'assets/images/location.png',
           text: 'Location',
-          color: kSecondColor,
         ),
         CustomProfileElements(
           image: 'assets/images/press-button.png',
           text: 'Subscribe',
-          color: kSecondColor,
         ),
         CustomProfileElements(
           image: 'assets/images/clock.png',
           text: 'Clear History',
-          color: kSecondColor,
         ),
         CustomProfileElements(
           image: 'assets/images/trash.png',
           text: 'Clear Cache',
-          color: kSecondColor,
         ),
         CustomProfileElements(
           image: 'assets/images/battery.png',
           text: 'Display',
-          color: kSecondColor,
         ),
         CustomProfileElements(
           image: 'assets/images/logout.png',
@@ -108,7 +102,7 @@ class CustomProfileElements extends StatelessWidget {
     required this.image,
     required this.text,
     this.onPressed,
-    required this.color,
+    this.color = kSecondColor,
   });
   final String image;
   final String text;
@@ -136,7 +130,6 @@ class CustomProfileElements extends StatelessWidget {
               Text(
                 text,
                 style: const TextStyle(
-                  color: kSecondColor,
                   fontSize: 15,
                   fontWeight: FontWeight.w400,
                 ),
@@ -147,7 +140,6 @@ class CustomProfileElements extends StatelessWidget {
             onPressed: onPressed,
             icon: const Icon(
               Icons.arrow_forward_ios,
-              color: kSecondColor,
             ),
           ),
         ],

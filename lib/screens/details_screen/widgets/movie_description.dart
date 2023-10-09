@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_app/constants/constants.dart';
+import 'package:netflix_app/models/movIe_model.dart';
 
 class MovieDescription extends StatelessWidget {
   const MovieDescription({
     super.key,
-    required this.desc,
+    required this.movie,
   });
 
-  final String desc;
+  final MovieModel movie;
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +15,9 @@ class MovieDescription extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            desc,
+            movie.description,
             maxLines: 5,
             style: const TextStyle(
-              color: kSecondColor,
               fontWeight: FontWeight.w700,
             ),
           ),

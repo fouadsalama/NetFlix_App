@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_app/screens/favorite_screen/widgets/custom_favorite_item.dart';
-import '../../../constants/constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_app/constants/constants.dart';
+import 'package:netflix_app/cubits/favorite_movie/favorite_movie_cubit.dart';
 
-class ContainerItem extends StatelessWidget {
-  const ContainerItem({
+import '../../../models/movIe_model.dart';
+import 'custom_favorite_item.dart';
+
+class FavoriteItems extends StatelessWidget {
+  const FavoriteItems({
     super.key,
+    required this.movie,
   });
+
+  final MovieModel movie;
 
   @override
   Widget build(BuildContext context) {
@@ -16,39 +23,40 @@ class ContainerItem extends StatelessWidget {
           height: 219,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            image: const DecorationImage(
+            image: DecorationImage(
               fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
+              colorFilter: const ColorFilter.mode(
                 Colors.black38,
                 BlendMode.hardLight,
               ),
-              image: AssetImage('assets/images/Rectangle 22.png'),
+              image: NetworkImage(
+                  'https://image.tmdb.org/t/p/w500${movie.backdropPath}'),
             ),
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            BlocProvider.of<FavoriteMovieCubit>(context).toggleFavorite(movie);
+          },
           splashColor: Colors.transparent,
-          icon: const Icon(
+          icon: Icon(
             Icons.delete,
-            color: Color(0xffFFFFFF),
+            color:
+                Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
             // size: 20,
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 183, left: 21, right: 21),
+        Padding(
+          padding: const EdgeInsets.only(top: 183, left: 21, right: 21),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomFavoriteItem(
-                image: 'assets/images/chevron.png',
-                text: 'Download',
-              ),
-              CustomFavoriteItem(
                 image: 'assets/images/play.png',
                 text: 'Play',
+                movie: movie,
               ),
-              Icon(
+              const Icon(
                 Icons.favorite,
                 color: kMainColor,
               ),

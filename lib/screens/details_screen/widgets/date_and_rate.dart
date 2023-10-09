@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_app/constants/constants.dart';
+import 'package:netflix_app/models/movIe_model.dart';
 
 class MovieDateAndRate extends StatelessWidget {
-  const MovieDateAndRate({super.key, required this.rate, required this.time});
-  final dynamic rate;
-  final String time;
+  const MovieDateAndRate({
+    super.key,
+    required this.movie,
+  });
+
+  final MovieModel movie;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,7 +22,7 @@ class MovieDateAndRate extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              time.substring(0, 4),
+              movie.date.substring(0, 4),
               style: const TextStyle(
                 color: kSecondColor,
                 fontWeight: FontWeight.w500,
@@ -33,9 +37,8 @@ class MovieDateAndRate extends StatelessWidget {
         ),
         const SizedBox(width: 5),
         Text(
-          rate.toString(),
+          movie.voteAverage.toString(),
           style: const TextStyle(
-            color: kSecondColor,
             fontSize: 15,
             fontWeight: FontWeight.w600,
           ),

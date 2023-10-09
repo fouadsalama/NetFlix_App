@@ -19,7 +19,6 @@ class HeadlinesScreen extends StatelessWidget {
           Text(
             text,
             style: const TextStyle(
-              color: kSecondColor,
               fontSize: 20,
               fontWeight: FontWeight.w500,
               height: 1.5,

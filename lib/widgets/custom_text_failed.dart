@@ -12,11 +12,13 @@ class CustomTextFailed extends StatelessWidget {
     this.controller,
     this.suffixIcon,
     this.color = kSecondColor,
+    this.onSaved,
   });
   final String hintText;
   final bool obscureText;
   final TextInputType textInputType;
   final void Function(String)? onChanged;
+  final void Function(String)? onSaved;
   final TextEditingController? controller;
   final Widget? suffixIcon;
   final Color color;

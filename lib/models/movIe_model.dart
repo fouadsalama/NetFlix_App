@@ -1,4 +1,4 @@
-class MoviePosterModel {
+class MovieModel {
   final String posterPath;
   final String title;
   final int id;
@@ -6,7 +6,7 @@ class MoviePosterModel {
   final dynamic voteAverage;
   final String date;
   final String description;
-  MoviePosterModel({
+  MovieModel({
     required this.id,
     required this.title,
     required this.posterPath,
@@ -16,8 +16,8 @@ class MoviePosterModel {
     required this.description,
   });
 
-  factory MoviePosterModel.fromJson(Map<String, dynamic> json) {
-    return MoviePosterModel(
+  factory MovieModel.fromJson(Map<String, dynamic> json) {
+    return MovieModel(
       posterPath: json['poster_path'],
       title: json['title'],
       id: json['id'],

@@ -40,7 +40,7 @@ class _SignInBodyState extends State<SignInBody> {
         if (state is SignInLoading) {
           isLoading = true;
         } else if (state is SignInSuccess) {
-          Navigator.pushNamed(context, Home.id).then((value) {
+          Navigator.pushNamed(context, HomeScreen.id).then((value) {
             mail.clear();
             pass.clear();
           });

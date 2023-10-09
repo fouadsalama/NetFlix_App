@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_app/widgets/logo_screens.dart';
 
 import '../constants/constants.dart';
 
@@ -13,24 +12,19 @@ class CustomAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        SizedBox(
+          height: 60,
+          child: Image.asset(kFlexLOgo),
+        ),
         IconButton(
+          splashColor: Colors.transparent,
           onPressed: () {},
-          icon: const Icon(
-            Icons.menu,
-            color: kSecondColor,
+          icon: Image.asset(
+            'assets/images/night-mode.png',
+            color:
+                Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
           ),
         ),
-        const SizedBox(
-          height: 95,
-          width: 95,
-          child: Logo(),
-        ),
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications,
-              color: kSecondColor,
-            ))
       ],
     );
   }

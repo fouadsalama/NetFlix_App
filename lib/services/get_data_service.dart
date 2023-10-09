@@ -4,7 +4,7 @@ import '../constants/constants.dart';
 import '../models/movIe_model.dart';
 
 class GetHomeDataMovie {
-  Future<List<MoviePosterModel>> getDataMovies({required String movie}) async {
+  Future<List<MovieModel>> getDataMovies({required String movie}) async {
     final url = Uri.parse('$kBaseUrl/$movie?api_key=$apiKey');
     final http.Response response = await http.get(url);
 
@@ -12,7 +12,7 @@ class GetHomeDataMovie {
       final jsonData = json.decode(response.body);
       final List<dynamic> results = jsonData['results'];
 
-      return results.map((json) => MoviePosterModel.fromJson(json)).toList();
+      return results.map((json) => MovieModel.fromJson(json)).toList();
     } else {
       throw Exception('Failed to fetch now playing movies');
     }

@@ -15,61 +15,52 @@ class ListViewItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 230,
-      child: FutureBuilder<List<MoviePosterModel>>(
-          future: GetHomeDataMovie().getDataMovies(movie: movie),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              List<MoviePosterModel> moviePosters = snapshot.data!;
-              return ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: moviePosters.length,
-                itemBuilder: (context, index) {
-                  final MoviePosterModel model = moviePosters[index];
-                  final posterPath = model.posterPath;
-                  final backdropPath = model.backdropPath;
-                  final id = model.id;
-                  final title = model.title;
-                  final rating = model.voteAverage;
-                  final year = model.date;
-                  final description = model.description;
-                  final backdropUrl =
-                      'https://image.tmdb.org/t/p/w500$backdropPath';
-                  final posterUrl =
-                      'https://image.tmdb.org/t/p/w500$posterPath';
+      child: FutureBuilder<List<MovieModel>>(
+        future: GetHomeDataMovie().getDataMovies(movie: movie),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            List<MovieModel> moviePosters = snapshot.data!;
+            return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: moviePosters.length,
+              itemBuilder: (context, index) {
+                final MovieModel model = moviePosters[index];
+                final posterPath = model.posterPath;
+                final id = model.id;
 
-                  final videoUrl =
-                      'https://embed.smashystream.com/playere.php?tmdb=$id';
+                final posterUrl = 'https://image.tmdb.org/t/p/w500$posterPath';
 
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => DetailsScreen(
-                                  backdropPath: backdropUrl,
-                                  title: title,
-                                  rate: rating,
-                                  time: year,
-                                  desc: description,
-                                  videoUrl: videoUrl,
-                                )),
-                      );
-                    },
-                    child: DisplayImage(
-                      posterUrl: posterUrl,
-                    ),
-                  );
-                },
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: kMainColor,
-                ),
-              );
-            }
-          }),
+                final videoUrl =
+                    'https://embed.smashystream.com/playere.php?tmdb=$id';
+
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailsScreen(
+                          videoUrl: videoUrl,
+                          movie: model,
+                        ),
+                      ),
+                    );
+                  },
+                  child: DisplayImage(
+                    posterUrl: posterUrl,
+                  ),
+                );
+              },
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: kMainColor,
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }

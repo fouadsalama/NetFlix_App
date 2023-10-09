@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants/constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_app/cubits/favorite_movie/favorite_movie_cubit.dart';
+import 'package:netflix_app/models/movIe_model.dart';
 
 class MovieTitle extends StatelessWidget {
   const MovieTitle({
     super.key,
-    required this.title,
+    required this.movie,
   });
 
-  final String title;
+  final MovieModel movie;
 
   @override
   Widget build(BuildContext context) {
@@ -16,22 +17,33 @@ class MovieTitle extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            title,
+            movie.title,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: const TextStyle(
-              color: kSecondColor,
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.favorite_border,
-              color: kSecondColor,
-            )),
+        BlocBuilder<FavoriteMovieCubit, FavoriteMovieState>(
+          builder: (context, state) {
+            final isFavorite = BlocProvider.of<FavoriteMovieCubit>(context)
+                .favoriteMovies
+                .contains(movie);
+
+            return IconButton(
+              onPressed: () {
+                BlocProvider.of<FavoriteMovieCubit>(context)
+                    .toggleFavorite(movie);
+              },
+              icon: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_border,
+                color: isFavorite ? Colors.red : null,
+              ),
+            );
+          },
+        ),
       ],
     );
   }
