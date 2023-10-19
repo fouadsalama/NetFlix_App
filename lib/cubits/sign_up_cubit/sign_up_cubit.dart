@@ -1,23 +1,30 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 part 'sign_up_state.dart';
 
+FirebaseFirestore db = FirebaseFirestore.instance;
+FirebaseAuth auth = FirebaseAuth.instance;
+
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());
 
-  BuildContext? get context => null;
-
-  Future<void> signUpUser(
-      {required String email, required String password}) async {
+  Future<void> signUpUser({
+    required String email,
+    required String password,
+    String name = '',
+  }) async {
     emit(SignUpLoading());
 
     try {
-      // ignore: unused_local_variable
-      UserCredential user = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+      await auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
       emit(SignUpSuccess());
     } on FirebaseAuthException catch (ex) {
       if (ex.code == 'weak-password') {

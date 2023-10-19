@@ -18,7 +18,7 @@ class CustomSkipButton extends StatelessWidget {
             padding: const EdgeInsets.only(right: 16),
             child: GestureDetector(
               onTap: () {
-                Navigator.pushNamed(context, WelcomeScreen.id);
+                Navigator.pushReplacementNamed(context, WelcomeScreen.id);
               },
               child: const Text(
                 'Skip',

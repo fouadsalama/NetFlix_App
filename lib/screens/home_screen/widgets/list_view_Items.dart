@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:netflix_app/models/movIe_model.dart';
 import 'package:netflix_app/screens/details_screen/details_screen.dart';

@@ -25,6 +25,5 @@ class SendOtpCubit extends Cubit<SendOtpState> {
     } catch (e) {
       emit(SendOtpFailure('Oops, OTP send failed'));
     }
-    // showSnackBar(context, 'Oops, OTP send failed');
   }
 }

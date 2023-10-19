@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:netflix_app/cubits/selected_screens/selected_bar_screen_cubit.dart';
 import 'package:netflix_app/cubits/sign_up_cubit/sign_up_cubit.dart';
+import 'package:netflix_app/cubits/user_name/user_name_cubit.dart';
 import 'package:netflix_app/helper/show_snack_bar.dart';
-import 'package:netflix_app/screens/home_screen/home_screen.dart';
-
 import '../../../constants/constants.dart';
 import '../../sign_in_screen/sign_in_screen.dart';
 import '../../../widgets/custom_button.dart';
@@ -35,7 +35,12 @@ class _SignUPBodyState extends State<SignUPBody> {
         if (state is SignUpLoading) {
           isLoading = true;
         } else if (state is SignUpSuccess) {
-          Navigator.pushReplacementNamed(context, HomeScreen.id);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
+            return SignInScreen(
+              name: name!,
+            );
+          }));
+          context.read<SelectedBarScreenCubit>().onItemToped(0);
           isLoading = false;
         } else if (state is SignUpFailure) {
           showSnackBar(context, state.message);
@@ -88,8 +93,11 @@ class _SignUPBodyState extends State<SignUPBody> {
                     color: kMainColor,
                     onTap: () {
                       if (formKey.currentState!.validate()) {
-                        BlocProvider.of<SignUpCubit>(context)
+                        context
+                            .read<SignUpCubit>()
                             .signUpUser(email: email!, password: password!);
+                        context.read<UserCubit>().setName(name!);
+                        context.read<EmailCubit>().setEmail(email!);
                       } else {
                         setState(() {});
                         autovalidateMode = AutovalidateMode.always;

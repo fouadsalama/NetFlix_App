@@ -79,7 +79,11 @@ class _ForgetPasswordBogyState extends State<ForgetPasswordBogy> {
                     const Logo(),
                     const Text(
                       'Forget Password?',
-                      style: kTextStyle,
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.5,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 10),

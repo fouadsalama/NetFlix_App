@@ -7,7 +7,7 @@ class HomeBodyScreen extends StatelessWidget {
   const HomeBodyScreen({
     super.key,
   });
-
+  static String id = 'HomeBodyScreen';
   @override
   Widget build(BuildContext context) {
     return const SingleChildScrollView(

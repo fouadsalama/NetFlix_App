@@ -8,11 +8,13 @@ class CustomButton extends StatelessWidget {
     required this.text,
     required this.color,
     this.onTap,
+    this.textColor = kSecondColor,
   });
 
   final void Function()? onTap;
   final String text;
   final Color color;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,12 @@ class CustomButton extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: kTextStyle,
+            style: TextStyle(
+              color: textColor,
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.5,
+            ),
           ),
         ),
       ),

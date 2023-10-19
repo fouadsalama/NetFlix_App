@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/constants.dart';
-
 class HeadlinesScreen extends StatelessWidget {
   const HeadlinesScreen({
     super.key,
@@ -22,13 +20,6 @@ class HeadlinesScreen extends StatelessWidget {
               fontSize: 20,
               fontWeight: FontWeight.w500,
               height: 1.5,
-            ),
-          ),
-          const Text(
-            'See more...',
-            style: TextStyle(
-              decoration: TextDecoration.underline,
-              color: kMainColor,
             ),
           ),
         ],

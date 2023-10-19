@@ -57,8 +57,6 @@ class _PageViewScreenState extends State<PageViewScreen> {
             duration: const Duration(milliseconds: 500),
             curve: Curves.decelerate,
           );
-
-          // Navigator.pushNamed(context, SplashScreen.id);
         },
         child: const Icon(Icons.arrow_forward),
       ),

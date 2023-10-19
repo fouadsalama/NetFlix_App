@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflix_app/constants/constants.dart';
-
 import '../../../cubits/movie_search/movie_search_cubit_cubit.dart';
 
 class CustomSearchTextField extends StatelessWidget {
@@ -22,8 +20,7 @@ class CustomSearchTextField extends StatelessWidget {
       onSubmitted: (value) {
         BlocProvider.of<MovieSearchCubit>(context).searchMovies(value);
       },
-      style: const TextStyle(color: kSecondColor),
-      cursorColor: kSecondColor,
+      cursorColor: Theme.of(context).unselectedWidgetColor,
       decoration: InputDecoration(
         hintText: 'Search for movies...',
         suffixIcon: IconButton(

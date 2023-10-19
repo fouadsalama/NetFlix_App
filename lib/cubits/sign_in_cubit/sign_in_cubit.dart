@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
-
 part 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
@@ -10,9 +9,9 @@ class SignInCubit extends Cubit<SignInState> {
       {required String email, required String password}) async {
     emit(SignInLoading());
     try {
-      // ignore: unused_local_variable
-      UserCredential user = await FirebaseAuth.instance
+      await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+
       emit(SignInSuccess());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

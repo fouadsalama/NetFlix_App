@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:netflix_app/cubits/selected_screens/selected_bar_screen_cubit.dart';
 import 'package:netflix_app/cubits/sign_in_cubit/sign_in_cubit.dart';
 import 'package:netflix_app/screens/home_screen/home_screen.dart';
 import 'package:netflix_app/screens/sign_up_screen/sign_up_screen.dart';
@@ -9,14 +10,16 @@ import 'package:netflix_app/widgets/end_text_page.dart';
 import 'package:netflix_app/widgets/logo_screens.dart';
 import 'package:netflix_app/screens/sign_in_screen/widgets/remember_me_.dart';
 import '../../../constants/constants.dart';
+import '../../../cubits/user_name/user_name_cubit.dart';
 import '../../../helper/show_snack_bar.dart';
 import '../../../widgets/custom_text_failed.dart';
 
 class SignInBody extends StatefulWidget {
   const SignInBody({
     super.key,
+    required this.name,
   });
-
+  final String name;
   @override
   State<SignInBody> createState() => _SignInBodyState();
 }
@@ -40,7 +43,8 @@ class _SignInBodyState extends State<SignInBody> {
         if (state is SignInLoading) {
           isLoading = true;
         } else if (state is SignInSuccess) {
-          Navigator.pushNamed(context, HomeScreen.id).then((value) {
+          context.read<SelectedBarScreenCubit>().onItemToped(0);
+          Navigator.pushReplacementNamed(context, HomeScreen.id).then((value) {
             mail.clear();
             pass.clear();
           });
@@ -98,6 +102,8 @@ class _SignInBodyState extends State<SignInBody> {
                       if (formKey.currentState!.validate()) {
                         BlocProvider.of<SignInCubit>(context)
                             .signInUser(email: email!, password: password!);
+                        context.read<UserCubit>().setName(widget.name);
+                        context.read<EmailCubit>().setEmail(email!);
                       } else {
                         setState(() {});
                         autovalidateMode = AutovalidateMode.always;

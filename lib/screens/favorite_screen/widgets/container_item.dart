@@ -18,22 +18,7 @@ class FavoriteItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          width: double.infinity,
-          height: 219,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              colorFilter: const ColorFilter.mode(
-                Colors.black38,
-                BlendMode.hardLight,
-              ),
-              image: NetworkImage(
-                  'https://image.tmdb.org/t/p/w500${movie.backdropPath}'),
-            ),
-          ),
-        ),
+        ShowImage(movie: movie),
         IconButton(
           onPressed: () {
             BlocProvider.of<FavoriteMovieCubit>(context).toggleFavorite(movie);
@@ -65,5 +50,53 @@ class FavoriteItems extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class ShowImage extends StatelessWidget {
+  const ShowImage({
+    super.key,
+    required this.movie,
+  });
+
+  final MovieModel movie;
+
+  @override
+  Widget build(BuildContext context) {
+    if (movie.backdropPath != null) {
+      return Container(
+        width: double.infinity,
+        height: 219,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            colorFilter: const ColorFilter.mode(
+              Colors.black38,
+              BlendMode.hardLight,
+            ),
+            image: NetworkImage(
+                'https://image.tmdb.org/t/p/w500${movie.backdropPath}'),
+          ),
+        ),
+      );
+    } else {
+      return Container(
+        width: double.infinity,
+        height: 219,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            colorFilter: const ColorFilter.mode(
+              Colors.black38,
+              BlendMode.hardLight,
+            ),
+            image: NetworkImage(
+                'https://image.tmdb.org/t/p/w500${movie.posterPath}'),
+          ),
+        ),
+      );
+    }
   }
 }

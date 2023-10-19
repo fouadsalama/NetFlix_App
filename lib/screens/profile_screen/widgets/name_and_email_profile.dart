@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../constants/constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_app/cubits/user_name/user_name_cubit.dart';
 
 class NameAndEmailProfile extends StatelessWidget {
   const NameAndEmailProfile({
@@ -9,22 +9,25 @@ class NameAndEmailProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    final userName =
+        context.select((UserCubit userNameCubit) => userNameCubit.state);
+    final emailUser =
+        context.select((EmailCubit emailCubit) => emailCubit.state);
+    return SizedBox(
       width: 143,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Fouad Salama',
-            style: TextStyle(
-                fontSize: 18, color: kSecondColor, fontWeight: FontWeight.w500),
+            userName,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
-            'fouadSalama39@gmail.com',
+            emailUser,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(0xff666A71),
               fontSize: 12,
               fontWeight: FontWeight.w400,

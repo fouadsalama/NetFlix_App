@@ -1,8 +1,10 @@
+// ignore_for_file: file_names
+
 class MovieModel {
   final String posterPath;
   final String title;
   final int id;
-  final String backdropPath;
+  final dynamic backdropPath;
   final dynamic voteAverage;
   final String date;
   final String description;

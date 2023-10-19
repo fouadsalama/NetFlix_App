@@ -47,8 +47,7 @@ class HomeScreen extends StatelessWidget {
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 currentIndex: selectedIndex,
                 onTap: (index) {
-                  BlocProvider.of<SelectedBarScreenCubit>(context)
-                      .onItemToped(index);
+                  context.read<SelectedBarScreenCubit>().onItemToped(index);
                 },
                 type: BottomNavigationBarType.fixed,
                 fixedColor: Colors.transparent,
@@ -66,9 +65,7 @@ class HomeScreen extends StatelessWidget {
                             )
                           : Image.asset(
                               'assets/images/home.png',
-                              color: Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor,
+                              color: Theme.of(context).unselectedWidgetColor,
                             ),
                     ),
                     label: '',
@@ -86,9 +83,7 @@ class HomeScreen extends StatelessWidget {
                             )
                           : Image.asset(
                               'assets/images/search.png',
-                              color: Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor,
+                              color: Theme.of(context).unselectedWidgetColor,
                             ),
                     ),
                     label: '',
@@ -106,9 +101,7 @@ class HomeScreen extends StatelessWidget {
                             )
                           : Image.asset(
                               'assets/images/love.png',
-                              color: Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor,
+                              color: Theme.of(context).unselectedWidgetColor,
                             ),
                     ),
                     label: '',
@@ -126,9 +119,7 @@ class HomeScreen extends StatelessWidget {
                             )
                           : Image.asset(
                               'assets/images/user.png',
-                              color: Theme.of(context)
-                                  .bottomNavigationBarTheme
-                                  .unselectedItemColor,
+                              color: Theme.of(context).unselectedWidgetColor,
                             ),
                     ),
                     label: '',

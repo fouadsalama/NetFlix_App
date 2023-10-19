@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflix_app/constants/constants.dart';
 import 'package:netflix_app/cubits/movie_search/movie_search_cubit_cubit.dart';
 import 'package:netflix_app/helper/lunch_url.dart';
 
@@ -16,8 +15,7 @@ class SearchScreen extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => MovieSearchCubit(),
-      child: Scaffold(
-          body: Padding(
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 26),
         child: BlocBuilder<MovieSearchCubit, List<dynamic>>(
           builder: (context, state) {
@@ -61,15 +59,11 @@ class SearchScreen extends StatelessWidget {
                                           movie['title'],
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
-                                              color: kSecondColor),
                                         ),
                                         Text(
                                           'Release Date: ${movie['release_date']}',
                                           maxLines: 1,
                                           overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
-                                              color: kSecondColor),
                                         ),
                                       ],
                                     ),
@@ -87,7 +81,7 @@ class SearchScreen extends StatelessWidget {
             );
           },
         ),
-      )),
+      ),
     );
   }
 }

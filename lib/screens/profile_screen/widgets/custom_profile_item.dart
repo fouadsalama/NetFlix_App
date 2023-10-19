@@ -1,5 +1,10 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:netflix_app/screens/profile_screen/profile_details_screen/profile_details_screen.dart';
+import 'package:netflix_app/screens/welcome_screen/welcome_screen.dart';
+import 'package:netflix_app/widgets/custom_button.dart';
 import '../../../constants/constants.dart';
 import 'name_and_email_profile.dart';
 
@@ -10,46 +15,54 @@ class CustomProfileItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> signOut() async {
+      try {
+        await FirebaseAuth.instance.signOut();
+        Navigator.pushReplacementNamed(context, WelcomeScreen.id);
+      } catch (e) {
+        throw Exception('Error while signing out: $e');
+      }
+    }
+
     return ListView(
-      children: const [
-        SizedBox(height: 20),
-        ProfileInfoAndEdit(),
-        SizedBox(height: 30),
-        Divider(
-            // color: Colors.grey,
-            ),
-        SizedBox(
+      children: [
+        const SizedBox(height: 20),
+        const ProfileInfoAndEdit(),
+        const SizedBox(height: 30),
+        const Divider(
+          color: Colors.grey,
+        ),
+        const SizedBox(
           height: 25,
         ),
-        CustomProfileElements(
-          image: 'assets/images/folder.png',
-          text: 'Downloads',
-        ),
-        CustomProfileElements(
+        const CustomProfileElements(
           image: 'assets/images/location.png',
           text: 'Location',
         ),
-        CustomProfileElements(
+        const CustomProfileElements(
           image: 'assets/images/press-button.png',
           text: 'Subscribe',
         ),
-        CustomProfileElements(
+        const CustomProfileElements(
           image: 'assets/images/clock.png',
           text: 'Clear History',
         ),
-        CustomProfileElements(
+        const CustomProfileElements(
           image: 'assets/images/trash.png',
           text: 'Clear Cache',
         ),
-        CustomProfileElements(
+        const CustomProfileElements(
           image: 'assets/images/battery.png',
           text: 'Display',
         ),
-        CustomProfileElements(
-          image: 'assets/images/logout.png',
+        CustomButton(
           text: 'Log Out',
           color: kMainColor,
+          onTap: () {
+            signOut();
+          },
         ),
+        const SizedBox(height: 50),
       ],
     );
   }
@@ -62,36 +75,41 @@ class ProfileInfoAndEdit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Row(
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+          return const ProfileDetailsScreen();
+        }));
+      },
+      child: Container(
+        height: 90,
+        width: 378,
+        decoration: BoxDecoration(
+          color: Theme.of(context).highlightColor,
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+        ),
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CircleAvatar(
-              radius: 85 / 2,
-              backgroundColor: kBackgroundColor,
-              backgroundImage: AssetImage('assets/images/fouad.jpg'),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: NameAndEmailProfile(),
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 8),
+                  child: CircleAvatar(
+                    radius: 75 / 2,
+                    backgroundColor: kBackgroundColor,
+                    backgroundImage: AssetImage('assets/images/fouad.jpg'),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 16, left: 16),
+                  child: NameAndEmailProfile(),
+                ),
+              ],
             ),
           ],
         ),
-        IconButton(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onPressed: () {},
-          icon: SizedBox(
-            width: 24,
-            height: 24,
-            child: Image.asset(
-              'assets/images/edit.png',
-              color: kSecondColor,
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -102,11 +120,9 @@ class CustomProfileElements extends StatelessWidget {
     required this.image,
     required this.text,
     this.onPressed,
-    this.color = kSecondColor,
   });
   final String image;
   final String text;
-  final Color color;
 
   final void Function()? onPressed;
   @override
@@ -123,7 +139,7 @@ class CustomProfileElements extends StatelessWidget {
                 height: 24,
                 child: Image.asset(
                   image,
-                  color: color,
+                  color: Theme.of(context).unselectedWidgetColor,
                 ),
               ),
               const SizedBox(width: 37 - 26),

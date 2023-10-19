@@ -5,20 +5,21 @@ import '../../widgets/background_image.dart';
 import 'widgets/sign_in_body.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+  const SignInScreen({super.key, this.name = 'User'});
   static String id = 'Sign In';
+  final String name;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignInCubit(),
-      child: const Stack(
+      child: Stack(
         children: [
-          BackgroundImage(
+          const BackgroundImage(
             image: 'assets/images/sign in.png',
           ),
           Scaffold(
             backgroundColor: Colors.black54,
-            body: SignInBody(),
+            body: SignInBody(name: name),
           ),
         ],
       ),

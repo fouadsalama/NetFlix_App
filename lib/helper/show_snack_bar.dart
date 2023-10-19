@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_app/constants/constants.dart';
 
 void showSnackBar(context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -11,9 +12,7 @@ void showSnackBar(context, String message) {
       child: Text(
         message,
         style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),
+            fontSize: 20, fontWeight: FontWeight.bold, color: kSecondColor),
         textAlign: TextAlign.center,
       ),
     ),

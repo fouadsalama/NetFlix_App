@@ -13,13 +13,13 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Center(
+        title: Center(
           child: Text(
             'WishList',
             style: TextStyle(
-              color: Colors.grey,
+              color: Theme.of(context).unselectedWidgetColor,
               fontSize: 20,
               fontWeight: FontWeight.w500,
             ),

@@ -6,10 +6,10 @@ sealed class FavoriteMovieState {
 
 class FavoriteMovieInitial extends FavoriteMovieState {}
 
+class FavoriteMovieLoading extends FavoriteMovieState {}
+
 class FavoriteMovieUpdated extends FavoriteMovieState {
   final Set<MovieModel> favoriteMovies;
 
   const FavoriteMovieUpdated({required this.favoriteMovies});
 }
-
-class FavoriteMovieRemove extends FavoriteMovieState {}

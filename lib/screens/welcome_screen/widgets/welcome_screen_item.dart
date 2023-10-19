@@ -48,7 +48,8 @@ class WelcomeScreenItems extends StatelessWidget {
                     ),
                     CustomButton(
                       onTap: () {
-                        Navigator.pushNamed(context, SignInScreen.id);
+                        Navigator.pushReplacementNamed(
+                            context, SignInScreen.id);
                       },
                       text: 'Sign In',
                       color: kMainColor,
@@ -56,10 +57,12 @@ class WelcomeScreenItems extends StatelessWidget {
                     const SizedBox(height: 20),
                     CustomButton(
                       onTap: () {
-                        Navigator.pushNamed(context, SignUpScreen.id);
+                        Navigator.pushReplacementNamed(
+                            context, SignUpScreen.id);
                       },
                       text: 'Sign Up',
-                      color: Colors.black,
+                      color: Colors.transparent,
+                      textColor: kMainColor,
                     ),
                   ],
                 ),

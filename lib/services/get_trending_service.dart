@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:netflix_app/models/movIe_model.dart';
 import 'package:http/http.dart' as http;
-
 import '../constants/constants.dart';
 
 class GetTrendingServices {

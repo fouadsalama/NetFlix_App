@@ -13,6 +13,7 @@ class CustomTextFailed extends StatelessWidget {
     this.suffixIcon,
     this.color = kSecondColor,
     this.onSaved,
+    this.hintColor = kSecondColor,
   });
   final String hintText;
   final bool obscureText;
@@ -22,6 +23,7 @@ class CustomTextFailed extends StatelessWidget {
   final TextEditingController? controller;
   final Widget? suffixIcon;
   final Color color;
+  final Color hintColor;
 
   @override
   Widget build(BuildContext context) {
@@ -37,24 +39,19 @@ class CustomTextFailed extends StatelessWidget {
       },
       onChanged: onChanged,
       obscureText: obscureText,
-      cursorColor: kSecondColor,
+      cursorColor: Theme.of(context).unselectedWidgetColor,
       style: const TextStyle(
-        color: kSecondColor,
+        // color: hintColor,
         fontSize: 20,
       ),
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         filled: true,
-        fillColor: kSecondColor.withOpacity(20 / 100),
+        fillColor: Theme.of(context).highlightColor,
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 34, vertical: 17),
         hintText: hintText,
-        hintStyle: TextStyle(
-          color: color,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'Inter',
-        ),
+        hintStyle: TextStyle(color: hintColor),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(45),
           borderSide: BorderSide.none,

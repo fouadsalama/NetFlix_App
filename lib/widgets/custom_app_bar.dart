@@ -19,11 +19,8 @@ class CustomAppBar extends StatelessWidget {
         IconButton(
           splashColor: Colors.transparent,
           onPressed: () {},
-          icon: Image.asset(
-            'assets/images/night-mode.png',
-            color:
-                Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
-          ),
+          icon: Image.asset('assets/images/night-mode.png',
+              color: Theme.of(context).unselectedWidgetColor),
         ),
       ],
     );
