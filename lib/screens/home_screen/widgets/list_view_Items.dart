@@ -24,7 +24,10 @@ class ListViewItems extends StatelessWidget {
             List<MovieModel> moviePosters = snapshot.data!;
             return ListView.builder(
               scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
+              physics: const ScrollPhysics(
+                parent: BouncingScrollPhysics(),
+              ),
+              shrinkWrap: false,
               itemCount: moviePosters.length,
               itemBuilder: (context, index) {
                 final MovieModel model = moviePosters[index];

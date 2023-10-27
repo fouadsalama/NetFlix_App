@@ -11,6 +11,9 @@ class HomeBodyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
+      physics: ScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
       child: Column(
         children: [
           SizedBox(height: 25),

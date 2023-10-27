@@ -9,8 +9,3 @@ const baseUrl = 'https://api.themoviedb.org/3';
 const apiKey = 'b18d712e84b672f268f26229271fd13e';
 const kLogo = 'assets/images/netflex logonetflix logo.png';
 const kFlexLOgo = 'assets/images/Netflix-Logo.png';
-
-const kTextStye2 = TextStyle(
-  fontSize: 15,
-  fontWeight: FontWeight.w400,
-);

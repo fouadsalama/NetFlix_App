@@ -39,9 +39,9 @@ class CustomTextFailed extends StatelessWidget {
       },
       onChanged: onChanged,
       obscureText: obscureText,
-      cursorColor: Theme.of(context).unselectedWidgetColor,
+      cursorColor: kSecondColor,
       style: const TextStyle(
-        // color: hintColor,
+        color: kSecondColor,
         fontSize: 20,
       ),
       decoration: InputDecoration(

@@ -1,10 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflix_app/constants/constants.dart';
 import 'package:netflix_app/cubits/favorite_movie/favorite_movie_cubit.dart';
 import 'package:netflix_app/cubits/selected_screens/selected_bar_screen_cubit.dart';
-import 'package:netflix_app/cubits/user_name/user_name_cubit.dart';
+import 'package:netflix_app/cubits/update_name/update_name_cubit.dart';
+import 'package:netflix_app/provider/theme_changer.dart';
 import 'package:netflix_app/screens/forget_password_screen/forget_password_screen.dart';
 import 'package:netflix_app/screens/home_screen/home_screen.dart';
 import 'package:netflix_app/screens/home_screen/widgets/home_body_screen.dart';
@@ -17,8 +17,8 @@ import 'package:netflix_app/screens/verification_code_screen/verification_code_s
 import 'package:netflix_app/screens/welcome_screen/welcome_screen.dart';
 import 'package:netflix_app/services/dio_helper.dart';
 import 'package:netflix_app/simple_bloc_observer.dart';
-
 import 'firebase_options.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +28,12 @@ Future<void> main() async {
   Bloc.observer = SimpleBlocObserver();
   await DioHelper.init();
 
-  runApp(const NetflixApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeChanger(),
+      child: const NetflixApp(),
+    ),
+  );
 }
 
 class NetflixApp extends StatelessWidget {
@@ -36,6 +41,8 @@ class NetflixApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeChanger>(context);
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -45,25 +52,16 @@ class NetflixApp extends StatelessWidget {
           create: (context) => FavoriteMovieCubit(),
         ),
         BlocProvider(
-          create: (context) => UserCubit(),
+          create: (context) => FavoriteMovieCubit(),
         ),
         BlocProvider(
-          create: (context) => EmailCubit(),
+          create: (context) => UpdateNameCubit(),
         ),
       ],
       child: MaterialApp(
+        title: 'Netflix',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: kBackgroundColor,
-          hintColor: Colors.grey,
-          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            selectedItemColor: kMainColor,
-            unselectedItemColor: kSecondColor,
-          ),
-          fontFamily: 'Poppins',
-        ),
-        darkTheme: ThemeData.dark(),
+        theme: themeProvider.isDarkMode ? lightTheme : darkTheme,
         routes: {
           SplashScreen.id: (context) => const SplashScreen(),
           PageViewScreen.id: (context) => const PageViewScreen(),

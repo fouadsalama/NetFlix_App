@@ -5,8 +5,7 @@ part 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit() : super(SignInInitial());
-  Future<void> signInUser(
-      {required String email, required String password}) async {
+  Future<void> signInUser(String email, String password) async {
     emit(SignInLoading());
     try {
       await FirebaseAuth.instance

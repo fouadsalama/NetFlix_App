@@ -15,7 +15,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   Future<void> signUpUser({
     required String email,
     required String password,
-    String name = '',
+    required String name,
   }) async {
     emit(SignUpLoading());
 
@@ -33,7 +33,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         emit(SignUpFailure(message: 'email already exists'));
       }
     } catch (e) {
-      emit(SignUpFailure(message: 'there was an error please try again '));
+      emit(SignUpFailure(message: 'There was an error please try again '));
     }
   }
 }

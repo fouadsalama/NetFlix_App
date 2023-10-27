@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_app/screens/welcome_screen/welcome_screen.dart';
 
-import '../../../constants/constants.dart';
-
 class CustomSkipButton extends StatelessWidget {
   const CustomSkipButton({
     super.key,
@@ -24,7 +22,7 @@ class CustomSkipButton extends StatelessWidget {
                 'Skip',
                 style: TextStyle(
                   fontSize: 20,
-                  color: kSecondColor,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
             ),

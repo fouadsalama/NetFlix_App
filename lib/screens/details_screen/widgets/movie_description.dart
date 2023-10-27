@@ -18,8 +18,7 @@ class MovieDescription extends StatelessWidget {
             movie.description,
             maxLines: 5,
             style: const TextStyle(
-              fontWeight: FontWeight.w700,
-            ),
+                fontWeight: FontWeight.w500, fontFamily: 'Poppins'),
           ),
         ),
       ],

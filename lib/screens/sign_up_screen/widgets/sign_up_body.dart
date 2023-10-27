@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:netflix_app/cubits/selected_screens/selected_bar_screen_cubit.dart';
 import 'package:netflix_app/cubits/sign_up_cubit/sign_up_cubit.dart';
-import 'package:netflix_app/cubits/user_name/user_name_cubit.dart';
 import 'package:netflix_app/helper/show_snack_bar.dart';
 import '../../../constants/constants.dart';
+import '../../../services/save_and_load_data.dart';
 import '../../sign_in_screen/sign_in_screen.dart';
 import '../../../widgets/custom_button.dart';
 import '../../../widgets/custom_text_failed.dart';
@@ -36,10 +36,9 @@ class _SignUPBodyState extends State<SignUPBody> {
           isLoading = true;
         } else if (state is SignUpSuccess) {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) {
-            return SignInScreen(
-              name: name!,
-            );
+            return const SignInScreen();
           }));
+          saveData(name: name!, email: email!);
           context.read<SelectedBarScreenCubit>().onItemToped(0);
           isLoading = false;
         } else if (state is SignUpFailure) {
@@ -63,6 +62,9 @@ class _SignUPBodyState extends State<SignUPBody> {
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: ListView(
+                physics: const ScrollPhysics(
+                  parent: BouncingScrollPhysics(),
+                ),
                 children: [
                   const Logo(),
                   CustomTextFailed(
@@ -91,13 +93,10 @@ class _SignUPBodyState extends State<SignUPBody> {
                   CustomButton(
                     text: 'sign up',
                     color: kMainColor,
-                    onTap: () {
+                    onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        context
-                            .read<SignUpCubit>()
-                            .signUpUser(email: email!, password: password!);
-                        context.read<UserCubit>().setName(name!);
-                        context.read<EmailCubit>().setEmail(email!);
+                        context.read<SignUpCubit>().signUpUser(
+                            email: email!, password: password!, name: name!);
                       } else {
                         setState(() {});
                         autovalidateMode = AutovalidateMode.always;

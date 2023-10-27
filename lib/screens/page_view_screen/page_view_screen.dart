@@ -6,7 +6,7 @@ import 'widgets/page_view_item.dart';
 
 class PageViewScreen extends StatefulWidget {
   const PageViewScreen({super.key});
-  static String id = 'Home Page';
+  static String id = 'Page View ';
 
   @override
   State<PageViewScreen> createState() => _PageViewScreenState();
@@ -21,6 +21,9 @@ class _PageViewScreenState extends State<PageViewScreen> {
       body: Stack(
         children: [
           PageView(
+            physics: const ScrollPhysics(
+              parent: BouncingScrollPhysics(),
+            ),
             controller: pageController,
             onPageChanged: (value) {
               setState(() {

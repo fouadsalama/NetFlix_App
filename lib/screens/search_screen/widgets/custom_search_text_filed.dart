@@ -15,12 +15,13 @@ class CustomSearchTextField extends StatelessWidget {
     return TextField(
       controller: searchController,
       onChanged: (value) {
-        BlocProvider.of<MovieSearchCubit>(context).searchMovies(value);
+        context.read<MovieSearchCubit>().searchMovies(value);
       },
       onSubmitted: (value) {
         BlocProvider.of<MovieSearchCubit>(context).searchMovies(value);
       },
       cursorColor: Theme.of(context).unselectedWidgetColor,
+      style: Theme.of(context).textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: 'Search for movies...',
         suffixIcon: IconButton(

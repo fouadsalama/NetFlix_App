@@ -4,7 +4,6 @@ import 'package:netflix_app/helper/lunch_url.dart';
 import 'package:netflix_app/models/movIe_model.dart';
 import 'package:netflix_app/screens/details_screen/widgets/movie_description.dart';
 import 'package:netflix_app/widgets/custom_button.dart';
-
 import 'widgets/backdrop_path.dart';
 import 'widgets/date_and_rate.dart';
 import 'widgets/movie_title.dart';

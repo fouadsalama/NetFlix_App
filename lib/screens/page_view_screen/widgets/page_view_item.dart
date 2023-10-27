@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_app/constants/constants.dart';
 
 class PageViewBody extends StatelessWidget {
   const PageViewBody({super.key, required this.image, required this.text});
@@ -17,7 +16,6 @@ class PageViewBody extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: const TextStyle(
-            color: kSecondColor,
             fontSize: 45,
           ),
         )

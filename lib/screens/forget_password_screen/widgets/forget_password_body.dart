@@ -75,12 +75,16 @@ class _ForgetPasswordBogyState extends State<ForgetPasswordBogy> {
                     right: 26,
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: ListView(
+                  physics: const ScrollPhysics(
+                    parent: BouncingScrollPhysics(),
+                  ),
                   children: [
                     const Logo(),
                     const Text(
                       'Forget Password?',
                       style: TextStyle(
                         fontSize: 25,
+                        color: kSecondColor,
                         fontWeight: FontWeight.bold,
                         letterSpacing: 1.5,
                       ),
@@ -89,7 +93,11 @@ class _ForgetPasswordBogyState extends State<ForgetPasswordBogy> {
                     const SizedBox(height: 10),
                     const Text(
                       'Please, enter the address associated\n with your account ',
-                      style: kTextStye2,
+                      style: TextStyle(
+                        color: kSecondColor,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 40),

@@ -5,21 +5,20 @@ import 'package:netflix_app/cubits/selected_screens/selected_bar_screen_cubit.da
 import 'package:netflix_app/cubits/sign_in_cubit/sign_in_cubit.dart';
 import 'package:netflix_app/screens/home_screen/home_screen.dart';
 import 'package:netflix_app/screens/sign_up_screen/sign_up_screen.dart';
+import 'package:netflix_app/services/save_and_load_data.dart';
 import 'package:netflix_app/widgets/custom_button.dart';
 import 'package:netflix_app/widgets/end_text_page.dart';
 import 'package:netflix_app/widgets/logo_screens.dart';
 import 'package:netflix_app/screens/sign_in_screen/widgets/remember_me_.dart';
 import '../../../constants/constants.dart';
-import '../../../cubits/user_name/user_name_cubit.dart';
+import '../../../cubits/update_name/update_name_cubit.dart';
 import '../../../helper/show_snack_bar.dart';
 import '../../../widgets/custom_text_failed.dart';
 
 class SignInBody extends StatefulWidget {
   const SignInBody({
     super.key,
-    required this.name,
   });
-  final String name;
   @override
   State<SignInBody> createState() => _SignInBodyState();
 }
@@ -44,7 +43,10 @@ class _SignInBodyState extends State<SignInBody> {
           isLoading = true;
         } else if (state is SignInSuccess) {
           context.read<SelectedBarScreenCubit>().onItemToped(0);
-          Navigator.pushReplacementNamed(context, HomeScreen.id).then((value) {
+          Navigator.pushReplacementNamed(
+            context,
+            HomeScreen.id,
+          ).then((value) {
             mail.clear();
             pass.clear();
           });
@@ -70,6 +72,9 @@ class _SignInBodyState extends State<SignInBody> {
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: ListView(
+                physics: const ScrollPhysics(
+                  parent: BouncingScrollPhysics(),
+                ),
                 children: [
                   const Logo(),
                   const SizedBox(
@@ -100,10 +105,11 @@ class _SignInBodyState extends State<SignInBody> {
                     color: kMainColor,
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        BlocProvider.of<SignInCubit>(context)
-                            .signInUser(email: email!, password: password!);
-                        context.read<UserCubit>().setName(widget.name);
-                        context.read<EmailCubit>().setEmail(email!);
+                        context
+                            .read<SignInCubit>()
+                            .signInUser(email!, password!);
+                        String userName = await fetchNameFromFirestore(email!);
+                        context.read<UpdateNameCubit>().updateName(userName);
                       } else {
                         setState(() {});
                         autovalidateMode = AutovalidateMode.always;

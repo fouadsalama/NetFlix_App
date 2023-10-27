@@ -13,6 +13,7 @@ class WelcomeScreenItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      physics: const ScrollPhysics(parent: BouncingScrollPhysics()),
       children: [
         SafeArea(
           child: Stack(

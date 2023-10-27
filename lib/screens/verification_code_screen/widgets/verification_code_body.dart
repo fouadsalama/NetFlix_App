@@ -75,7 +75,10 @@ class _VerificationCodeBodyState extends State<VerificationCodeBody> {
                     ),
                     const Text(
                       'Please, enter the code associated\n with your account',
-                      style: kTextStye2,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 25),

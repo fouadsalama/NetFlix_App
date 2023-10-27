@@ -19,8 +19,8 @@ class FavoriteScreen extends StatelessWidget {
           child: Text(
             'WishList',
             style: TextStyle(
-              color: Theme.of(context).unselectedWidgetColor,
               fontSize: 20,
+              color: Theme.of(context).unselectedWidgetColor,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -32,6 +32,9 @@ class FavoriteScreen extends StatelessWidget {
             BlocProvider.of<FavoriteMovieCubit>(context).favoriteMovies;
         if (favoriteMovies.isNotEmpty && state is FavoriteMovieUpdated) {
           return ListView.builder(
+            physics: const ScrollPhysics(
+              parent: BouncingScrollPhysics(),
+            ),
             itemCount: favoriteMovies.length,
             itemBuilder: (context, index) {
               final movie = favoriteMovies.elementAt(index);
