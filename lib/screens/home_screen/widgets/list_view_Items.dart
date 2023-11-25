@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix_app/models/movIe_model.dart';
 import 'package:netflix_app/screens/details_screen/details_screen.dart';
 import 'package:netflix_app/services/get_data_service.dart';
-import '../../../constants/constants.dart';
+import '../../search_screen/widgets/custom_loading_list_view.dart';
 import 'display_image.dart';
 
 class ListViewItems extends StatelessWidget {
@@ -58,11 +58,7 @@ class ListViewItems extends StatelessWidget {
               },
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(
-                color: kMainColor,
-              ),
-            );
+            return const CustomLoadingListView();
           }
         },
       ),
